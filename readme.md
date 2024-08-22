@@ -1,4 +1,4 @@
-![alt text](https://github.com/RamiDarwiche/NexHome/blob/mater/NexHome Outline.jpg[Uploading NexHome Outline.jpg…]()
+![alt text](https://github.com/RamiDarwiche/NexHome/blob/mater/NexHome Outline.jpg[Uploading NexHome-Outline.jpg…]()
 ?raw=true)
 
 
