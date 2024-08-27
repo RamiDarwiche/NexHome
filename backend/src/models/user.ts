@@ -1,0 +1,33 @@
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema({
+  auth0Id: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  accountType: {
+    type: String,
+  },
+  name: {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+});
+
+// realtor requires current clients array, past clients array, license # (verification maybe)?
+// client requires assigned realtor, client type, addtl. info
+
+const User = mongoose.model("User", userSchema);
+export default User;

@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import navImage from "../../assets/navImage.webp";
 import { House } from "lucide-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -54,6 +55,8 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function NavMenu() {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
+
   return (
     <div className="flex justify-between items-center">
       <div className="container flex-shrink pl-0">
@@ -122,12 +125,17 @@ export default function NavMenu() {
         </NavigationMenu>
       </div>
       <div className="container px-0 flex-1 justify-end">
-        <Button
-          variant="ghost"
-          className="hover:text-primary-sdlight2 hover:bg-accent"
-        >
-          Log In
-        </Button>
+        {isAuthenticated ? (
+          <h1>temp</h1>
+        ) : (
+          <Button
+            variant="ghost"
+            className="hover:text-primary-sdlight2 hover:bg-accent"
+            onClick={async () => await loginWithRedirect()}
+          >
+            Log In
+          </Button>
+        )}
       </div>
     </div>
   );

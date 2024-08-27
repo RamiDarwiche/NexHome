@@ -15,8 +15,11 @@ import {
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MobileNav = () => {
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
+
   return (
     <Sheet>
       <SheetTrigger className="">
@@ -62,9 +65,18 @@ const MobileNav = () => {
             About Us
           </Link>
           <Separator />
-          <Button className="flex-1 font-bold bg-primary-sdlight1">
-            Log In
-          </Button>
+          <div className="container px-0 flex-1 justify-end">
+            {isAuthenticated ? (
+              <h1>temp</h1>
+            ) : (
+              <Button
+                className="flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
+                onClick={async () => await loginWithRedirect()}
+              >
+                Log In
+              </Button>
+            )}
+          </div>
         </SheetDescription>
       </SheetContent>
     </Sheet>
