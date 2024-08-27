@@ -11,7 +11,8 @@ const HomePage = () => {
       <Particles
         className="absolute inset-0 -z-1 pointer-events-none"
         color={"#52B4DF"}
-        quantity={600}
+        // maybe configure for performance
+        quantity={700}
         size={0.6}
         staticity={45}
       />

@@ -15,6 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "./ui/button";
+import MainNavUserLinks from "./MainNavUserLinks";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -126,7 +127,7 @@ export default function NavMenu() {
       </div>
       <div className="container px-0 flex-1 justify-end">
         {isAuthenticated ? (
-          <h1>temp</h1>
+          <MainNavUserLinks />
         ) : (
           <Button
             variant="ghost"

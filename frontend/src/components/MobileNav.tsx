@@ -16,6 +16,7 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import MobileNavUserLinks from "./MobileNavUserLinks";
 
 const MobileNav = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
@@ -33,7 +34,9 @@ const MobileNav = () => {
         <SheetDescription className="flex flex-col gap-4">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
-              <AccordionTrigger>Clients</AccordionTrigger>
+              <AccordionTrigger className="focus:text-primary-sdlight1 hover:text-primary-sdlight1">
+                Clients
+              </AccordionTrigger>
               <AccordionContent className="flex flex-col space-y-4">
                 <Link to="#" className="hover:text-primary-sdlight1">
                   Link 1
@@ -47,7 +50,9 @@ const MobileNav = () => {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
-              <AccordionTrigger>Realtors</AccordionTrigger>
+              <AccordionTrigger className="focus:text-primary-sdlight1 hover:text-primary-sdlight1">
+                Realtors
+              </AccordionTrigger>
               <AccordionContent className="flex flex-col space-y-4">
                 <Link to="#" className="hover:text-primary-sdlight1">
                   Link 1
@@ -61,13 +66,16 @@ const MobileNav = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Link to="/about" className="text-black text-sm font-medium">
+          <Link
+            to="/about"
+            className="text-black text-sm font-medium focus:text-primary-sdlight1 hover:text-primary-sdlight1"
+          >
             About Us
           </Link>
           <Separator />
           <div className="container px-0 flex-1 justify-end">
             {isAuthenticated ? (
-              <h1>temp</h1>
+              <MobileNavUserLinks />
             ) : (
               <Button
                 className="flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
