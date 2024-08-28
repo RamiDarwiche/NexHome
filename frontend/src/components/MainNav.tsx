@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import navImage from "../../assets/navImage.webp";
 import { House } from "lucide-react";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "./ui/button";
 import MainNavUserLinks from "./MainNavUserLinks";
+import { useGetMyUser } from "@/api/MyUserApi";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -56,7 +56,9 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function NavMenu() {
+  // TODO: fix getMyUser Bug in displaying current user's properties
   const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { currentUser } = useGetMyUser();
 
   return (
     <div className="flex justify-between items-center">
@@ -127,11 +129,12 @@ export default function NavMenu() {
       </div>
       <div className="container px-0 flex-1 justify-end">
         {isAuthenticated ? (
-          <MainNavUserLinks />
+          <MainNavUserLinks currentUser={currentUser} />
         ) : (
           <Button
             variant="ghost"
-            className="hover:text-primary-sdlight2 hover:bg-accent"
+            // className="hover:text-primary-sdlight2 hover:bg-accent" choose one later
+            className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
             onClick={async () => await loginWithRedirect()}
           >
             Log In

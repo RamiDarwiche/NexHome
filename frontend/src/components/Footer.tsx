@@ -5,7 +5,7 @@ const Footer = () => {
         <span className="text-2xl font-bold tracking-tight text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text">
           NexHome
         </span>
-        <span className="text-sm font-medium tracking-tight flex gap-4">
+        <span className="text-xs font-medium tracking-tight flex items-center gap-4">
           <span>Privacy Policy</span>
           <span>Terms of Service</span>
         </span>

@@ -1,4 +1,3 @@
-import { CircleUserRound } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,13 +9,15 @@ import { Link } from "react-router-dom";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { User } from "@/types";
 
 type Props = {
   avatar: string;
+  currentUser: User;
 };
 
-const MainNavUserLinks = ({ avatar }: Props) => {
-  const { user, logout } = useAuth0();
+const MainNavUserLinks = ({ avatar, currentUser }: Props) => {
+  const { logout } = useAuth0();
 
   return (
     <DropdownMenu>
@@ -25,7 +26,7 @@ const MainNavUserLinks = ({ avatar }: Props) => {
           <AvatarImage src={avatar} />
           <AvatarFallback className="font-medium">RD</AvatarFallback>
         </Avatar>
-        {user?.email}
+        {currentUser?.fName}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="my-1 justify-center">
@@ -39,7 +40,7 @@ const MainNavUserLinks = ({ avatar }: Props) => {
             onClick={() =>
               logout({ logoutParams: { returnTo: "http://localhost:5173" } })
             }
-            className="flex flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
+            className="flex flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight2 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
           >
             Log Out
           </Button>

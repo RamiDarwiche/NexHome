@@ -9,10 +9,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  accountType: {
+  fName: {
     type: String,
   },
-  name: {
+  lName: {
     type: String,
   },
   address: {
@@ -21,7 +21,16 @@ const userSchema = new mongoose.Schema({
   city: {
     type: String,
   },
-  country: {
+  state: {
+    type: String,
+  },
+  zip: {
+    type: String,
+  },
+  role: {
+    type: String,
+  },
+  phone: {
     type: String,
   },
 });
