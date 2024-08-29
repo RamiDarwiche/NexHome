@@ -4,6 +4,7 @@ import DotPattern from "@/components/magicui/dot-pattern";
 import Particles from "@/components/magicui/particles";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -12,7 +13,7 @@ const HomePage = () => {
         className="absolute inset-0 -z-1 pointer-events-none"
         color={"#52B4DF"}
         // maybe configure for performance
-        quantity={700}
+        quantity={800}
         size={0.6}
         staticity={45}
       />
@@ -57,12 +58,16 @@ const HomePage = () => {
               ipsam commodi fugit debitis nemo voluptatum!
             </p>
             <div className="flex justify-center gap-x-5 py-16">
-              <Button className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none">
-                Learn More
-              </Button>
-              <Button className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none">
-                Subscribe
-              </Button>
+              <Link to="/about">
+                <Button className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none">
+                  Learn More
+                </Button>
+              </Link>
+              <Link to="/pricing">
+                <Button className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none">
+                  Subscribe
+                </Button>
+              </Link>
             </div>
           </div>
         </BlurFade>
