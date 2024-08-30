@@ -11,11 +11,13 @@ const AuthCallbackPage = () => {
   const hasCreatedUser = useRef(false);
 
   useEffect(() => {
+    console.log(hasCreatedUser.current);
     if (user?.sub && user?.email && !hasCreatedUser.current) {
       createUser({ auth0Id: user.sub, email: user.email });
       hasCreatedUser.current = true;
     }
-    navigate("/create-profile");
+    // profile creation redirect is handled on homepage
+    navigate("/");
   }, [createUser, navigate, user]);
 
   return <>Loading...</>;

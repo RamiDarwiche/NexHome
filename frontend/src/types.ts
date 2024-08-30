@@ -9,4 +9,5 @@ export type User = {
   state: string;
   role: string;
   phone: string;
+  profileCreated: boolean;
 };

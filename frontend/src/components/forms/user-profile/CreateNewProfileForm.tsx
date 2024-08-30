@@ -55,7 +55,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSave)}
-        className="p-5 w-3/4 md:w-1/2 space-y-4 rounded-lg md:p-10 shadow shadow-primary-uilight3 border border-primary-uilight3"
+        className="m-6 p-5 w-3/4 md:w-1/2 space-y-4 rounded-lg md:p-10 shadow shadow-primary-uilight3 border border-primary-uilight3"
       >
         <div className="flex flex-col md:flex-row gap-4">
           <FormField
@@ -153,12 +153,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
               <FormItem className="flex-1 min-w-20">
                 <FormLabel>Zip Code</FormLabel>
                 <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="90210"
-                    {...field}
-                    className="bg-white"
-                  />
+                  <Input placeholder="90210" {...field} className="bg-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

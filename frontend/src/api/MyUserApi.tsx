@@ -95,13 +95,19 @@ export const useUpdateMyUser = () => {
 
   const updateMyUserRequest = async (formData: CreateUserProfileRequest) => {
     const accessToken = await getAccessTokenSilently();
+    const profileFlagCreatedObj = { profileCreated: true };
+    const formDataWithProfileFlag = Object.assign(
+      formData,
+      profileFlagCreatedObj
+    );
+
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formDataWithProfileFlag),
     });
 
     if (!response.ok) {

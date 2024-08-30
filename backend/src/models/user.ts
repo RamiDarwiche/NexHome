@@ -9,6 +9,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  profileCreated: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
   fName: {
     type: String,
   },

@@ -3,7 +3,7 @@ import User from "../models/user";
 
 const getCurrentUser = async (req: Request, res: Response) => {
   try {
-    const currentUser = await User.find({ _id: req.userId });
+    const currentUser = await User.findOne({ _id: req.userId });
     if (!currentUser) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -40,7 +40,17 @@ const createCurrentUser = async (req: Request, res: Response) => {
 
 const updateCurrentUser = async (req: Request, res: Response) => {
   try {
-    const { fName, lName, address, city, state, zip, role, phone } = req.body;
+    const {
+      fName,
+      lName,
+      address,
+      city,
+      state,
+      zip,
+      role,
+      phone,
+      profileCreated,
+    } = req.body;
 
     const user = await User.findById(req.userId);
 
@@ -56,6 +66,7 @@ const updateCurrentUser = async (req: Request, res: Response) => {
     user.zip = zip;
     user.role = role;
     user.phone = phone;
+    user.profileCreated = profileCreated;
 
     await user.save();
 

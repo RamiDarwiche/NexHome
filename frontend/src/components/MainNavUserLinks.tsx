@@ -10,6 +10,7 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { User } from "@/types";
+import { Skeleton } from "./ui/skeleton";
 
 type Props = {
   avatar: string;
@@ -21,12 +22,23 @@ const MainNavUserLinks = ({ avatar, currentUser }: Props) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center font-medium hover:text-primary-sdlight2 gap-2">
-        <Avatar>
-          <AvatarImage src={avatar} />
-          <AvatarFallback className="font-medium">RD</AvatarFallback>
-        </Avatar>
-        {currentUser?.fName}
+      <DropdownMenuTrigger className="flex flex-1 items-center font-medium hover:text-primary-sdlight2 gap-2">
+        {currentUser ? (
+          <>
+            <Avatar>
+              <AvatarImage src={avatar} />
+              <AvatarFallback className="font-medium">RD</AvatarFallback>
+            </Avatar>
+            <div className="flex text-nowrap">{`${currentUser?.fName} ${currentUser?.lName}`}</div>
+          </>
+        ) : (
+          <div className="flex items-center space-x-4">
+            <Skeleton className="h-8 w-8 rounded-full" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[120px]" />
+            </div>
+          </div>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="my-1 justify-center">
