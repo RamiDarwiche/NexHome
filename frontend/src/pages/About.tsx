@@ -20,11 +20,11 @@ const About = () => {
             inView
             className="flex flex-col md:flex-row md:min-w-[450px]"
           >
-            <h1 className="pb-5 pr-3 leading-none text-5xl md:text-6xl font-medium tracking-tighter text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text pointer-events-none select-none">
+            <h1 className=" pr-3 leading-none text-5xl md:text-6xl font-medium tracking-tighter text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text pointer-events-none select-none">
               We Are
             </h1>
             <WordRotate
-              className="text-5xl md:text-6xl font-medium tracking-tighter text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text pointer-events-none select-none"
+              className="text-5xl pb-5 md:text-6xl font-medium tracking-tighter text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text pointer-events-none select-none"
               words={[
                 "Efficient",
                 "Intuitive",
@@ -35,6 +35,7 @@ const About = () => {
                 "Seamless",
                 "Versatile",
               ]}
+              duration={2000}
             />
           </BlurFade>
           <BlurFade delay={0.25 * 3} yOffset={-3} duration={0.6} inView>

@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useAuth0 } from "@auth0/auth0-react";
+import { User } from "@/types";
 
-const MobileNavUserLinks = () => {
+type Props = {
+  currentUser: User;
+};
+
+const MobileNavUserLinks = ({ currentUser }: Props) => {
   const { logout } = useAuth0();
 
   return (
@@ -12,7 +17,7 @@ const MobileNavUserLinks = () => {
         className="flex items-center font-medium focus:text-primary-sdlight1 hover:text-primary-sdlight1"
       >
         {/* change from generic to first, last or email */}
-        User Profile
+        {`${currentUser.fName} ${currentUser.lName}`}
       </Link>
       <Button
         className="my-4 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"

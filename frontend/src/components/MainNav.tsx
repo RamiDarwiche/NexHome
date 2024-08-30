@@ -19,8 +19,8 @@ import { useGetMyUser } from "@/api/MyUserApi";
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    title: "Agent Dashboard",
+    href: "/agent-dashboard",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
@@ -61,7 +61,7 @@ export default function NavMenu() {
   const { currentUser } = useGetMyUser();
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center mt-1">
       <div className="container flex-shrink pl-0">
         <NavigationMenu>
           <NavigationMenuList>

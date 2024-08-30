@@ -5,6 +5,8 @@ import AuthCallbackPage from "./pages/AuthCallBackPage";
 import CreateNewProfile from "./pages/CreateNewProfile";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
+import UserProfile from "./pages/UserProfile";
+import AgentLanding from "./pages/agent-pages/AgentLanding";
 
 const AppRoutes = () => {
   return (
@@ -30,6 +32,22 @@ const AppRoutes = () => {
         element={
           <Layout>
             <Pricing />
+          </Layout>
+        }
+      />
+      <Route
+        path="/user-profile"
+        element={
+          <Layout>
+            <UserProfile />
+          </Layout>
+        }
+      />
+      <Route
+        path="/agent-dashboard"
+        element={
+          <Layout>
+            <AgentLanding />
           </Layout>
         }
       />

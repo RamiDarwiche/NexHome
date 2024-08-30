@@ -17,13 +17,15 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import MobileNavUserLinks from "./MobileNavUserLinks";
+import { useGetMyUser } from "@/api/MyUserApi";
 
 const MobileNav = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { currentUser } = useGetMyUser();
 
   return (
     <Sheet>
-      <SheetTrigger className="">
+      <SheetTrigger className="mt-1">
         <Menu />
       </SheetTrigger>
       <SheetContent className="space-y-3">
@@ -75,7 +77,7 @@ const MobileNav = () => {
           <Separator />
           <div className="container px-0 flex-1 justify-end">
             {isAuthenticated ? (
-              <MobileNavUserLinks />
+              <MobileNavUserLinks currentUser={currentUser} />
             ) : (
               <Button
                 className="flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"

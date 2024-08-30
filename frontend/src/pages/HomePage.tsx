@@ -8,22 +8,33 @@ import { Link, useNavigate } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 const HomePage = () => {
+  // once role specific pages are set up, profile completion redirects should be abstracted to those components. this will ensure
+  // that users with an auth token that havent finished their profile can still access public resources without being autoredirected
   const navigate = useNavigate();
-  const { currentUser } = useGetMyUser();
-  const { isAuthenticated } = useAuth0();
+  const { currentUser, isLoading: isGetLoading } = useGetMyUser();
+  const { isAuthenticated, isLoading: isAuthLoading } = useAuth0();
 
   // if account signed up without creating profile redirect
   if (currentUser?.profileCreated === false && isAuthenticated) {
     navigate("/create-profile");
   }
 
-  // conditional for displaying loader or home page if profile creation is necessary
-  const isLoggedInWithProfileOrGuest =
-    currentUser?.profileCreated === true || !isAuthenticated;
-
   return (
     <div className="h-inherit">
-      {isLoggedInWithProfileOrGuest ? (
+      {/* display loader if awaiting fetches */}
+      {isAuthLoading || isGetLoading ? (
+        <div className="absolute top-[45%] left-1/2">
+          <ScaleLoader
+            height={40}
+            margin={2}
+            color="#A4DAF5"
+            speedMultiplier={1.1}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        // loader while checking for async currentUser booleans
         <div className="flex flex-col items-center">
           <Particles
             className="absolute inset-0 -z-1 pointer-events-none"
@@ -82,25 +93,13 @@ const HomePage = () => {
                   </Link>
                   <Link to="/pricing">
                     <Button className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none">
-                      Subscribe
+                      Get Started
                     </Button>
                   </Link>
                 </div>
               </div>
             </BlurFade>
           </div>
-        </div>
-      ) : (
-        // loader while checking for async currentUser booleans
-        <div className="absolute top-[45%] left-1/2">
-          <ScaleLoader
-            height={40}
-            margin={2}
-            color="#A4DAF5"
-            speedMultiplier={1.1}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
         </div>
       )}
     </div>
