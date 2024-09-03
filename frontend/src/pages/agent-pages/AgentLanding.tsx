@@ -2,6 +2,7 @@ import { useGetMyUser } from "@/api/MyUserApi";
 import AgentDash from "@/components/agent-pages-components/AgentDash";
 import { useAuth0 } from "@auth0/auth0-react";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import NotAgentRedirect from "./NotAgentRedirect";
 
 const AgentLanding = () => {
   const { currentUser, isLoading: isGetLoading } = useGetMyUser();
@@ -29,7 +30,9 @@ const AgentLanding = () => {
           {isLoggedInAgent ? (
             <AgentDash currentUser={currentUser} />
           ) : (
-            <h1>Please Login</h1>
+            <h1>
+              <NotAgentRedirect />
+            </h1>
           )}
         </div>
       )}

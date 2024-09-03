@@ -68,6 +68,10 @@ const updateCurrentUser = async (req: Request, res: Response) => {
     user.phone = phone;
     user.profileCreated = profileCreated;
 
+    if (user.role === "Agent") {
+      user.clients = [];
+    }
+
     await user.save();
 
     res.send(user);

@@ -7,10 +7,15 @@ import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import UserProfile from "./pages/UserProfile";
 import AgentLanding from "./pages/agent-pages/AgentLanding";
+import AgentCalendar from "./pages/agent-pages/AgentCalendar";
+import AgentInbox from "./pages/agent-pages/AgentInbox";
+import AgentAddClient from "./pages/agent-pages/AgentAddClient";
+import AgentClients from "./pages/agent-pages/AgentClients";
 
 const AppRoutes = () => {
   return (
     <Routes>
+      {/* Global routing */}
       <Route
         path="/"
         element={
@@ -43,11 +48,44 @@ const AppRoutes = () => {
           </Layout>
         }
       />
+      {/* Agent routing */}
       <Route
-        path="/agent-dashboard"
+        path="/agent/dashboard"
         element={
           <Layout>
             <AgentLanding />
+          </Layout>
+        }
+      />
+      <Route
+        path="/agent/inbox"
+        element={
+          <Layout>
+            <AgentInbox />
+          </Layout>
+        }
+      />
+      <Route
+        path="/agent/clients"
+        element={
+          <Layout>
+            <AgentClients />
+          </Layout>
+        }
+      />
+      <Route
+        path="/agent/calendar"
+        element={
+          <Layout>
+            <AgentCalendar />
+          </Layout>
+        }
+      />
+      <Route
+        path="/agent/add-client"
+        element={
+          <Layout>
+            <AgentAddClient />
           </Layout>
         }
       />

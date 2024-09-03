@@ -8,7 +8,7 @@ const features = [
     Icon: Inbox,
     name: "Inbox",
     description: "We automatically save your files as you type.",
-    href: "#",
+    href: "/agent/inbox",
     cta: "View Messages",
     className: "col-span-3 lg:col-span-1",
   },
@@ -16,7 +16,7 @@ const features = [
     Icon: House,
     name: "Manage Clients",
     description: "Get notified when something happens.",
-    href: "#",
+    href: "/agent/clients",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2",
   },
@@ -24,8 +24,8 @@ const features = [
     Icon: CalendarIcon,
     name: "Calendar",
     description: "Supports 100+ integrations and counting.",
-    href: "#",
-    cta: "",
+    href: "/agent/calendar",
+    cta: "View Calendar",
     className: "col-span-3 lg:col-span-2",
     background: (
       <Calendar
@@ -40,7 +40,7 @@ const features = [
     name: "Add Client",
     description: "Use the calendar to filter your files by date.",
     className: "col-span-3 lg:col-span-1",
-    href: "#",
+    href: "/agent/add-client",
     cta: "Get Started",
   },
 ];

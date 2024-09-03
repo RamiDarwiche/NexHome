@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <div className="border-t-2 border-primary-bdlight1 py-4">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between">
+    <div className="flex flex-justify border-gray-100 py-4">
+      <div className="container mx-auto flex flex-row justify-between">
         <span className="text-2xl font-bold tracking-tight text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text">
           NexHome
         </span>

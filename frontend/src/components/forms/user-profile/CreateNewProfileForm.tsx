@@ -12,28 +12,29 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import SelectState from "./SelectState";
+import validator from "validator";
 
 const formSchema = z.object({
   fName: z.string().min(1, "First name is required"),
   lName: z.string().min(1, "Last name is required"),
   address: z.string().min(1, "Address is required"),
-  zip: z
-    .string()
-    .min(5, "Valid zip code required")
-    .max(5, "Valid zip code required")
-    .refine((val) => !Number.isNaN(parseInt(val, 10)), {
-      message: "Expected number, received a string",
-    }),
+  zip: z.string().refine((zip) => validator.isPostalCode(zip, "US"), {
+    message: "Must be a valid zip code",
+  }),
   city: z.string().min(1, "City is required"),
   state: z.string().min(1, "State is required"),
-  role: z.string().min(1, "Role is required"),
-  phone: z
-    .string()
-    .min(10, "Valid phone number required")
-    .max(10, "Valid phone number required")
-    .refine((val) => !Number.isNaN(parseInt(val, 10)), {
-      message: "Expected number, received a string",
-    }),
+  role: z.enum(["Agent", "Client"]),
+  phone: z.string().refine((phone) => validator.isMobilePhone(phone, "en-US"), {
+    message: "Must be a valid phone number",
+  }),
 });
 
 type CreateNewUserFormData = z.infer<typeof formSchema>;
@@ -44,7 +45,7 @@ type Props = {
   isLoading: boolean;
 };
 
-// TODO: redesign form, change state and role selector to dropdowns
+// this looks ugly fix it at some point, potentially use google maps platform for address validation
 
 const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
   const form = useForm<CreateNewUserFormData>({
@@ -65,7 +66,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
               <FormItem className="flex-1">
                 <FormLabel>First Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="Rami" {...field} className="bg-white" />
+                  <Input {...field} className="bg-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -78,11 +79,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
               <FormItem className="flex-1">
                 <FormLabel>Last Name</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Darwiche"
-                    {...field}
-                    className="bg-white"
-                  />
+                  <Input {...field} className="bg-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -98,11 +95,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
               <FormItem className="flex-1">
                 <FormLabel className="font-medium">Address</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="123 Place Street"
-                    {...field}
-                    className="bg-white"
-                  />
+                  <Input {...field} className="bg-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -117,11 +110,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
               <FormItem className="flex-1">
                 <FormLabel className="font-medium">City</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Boca Raton"
-                    {...field}
-                    className="bg-white"
-                  />
+                  <Input {...field} className="bg-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -133,13 +122,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel>State</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Florida"
-                    {...field}
-                    className="bg-white"
-                  />
-                </FormControl>
+                <SelectState field={field} />
                 <FormMessage />
               </FormItem>
             )}
@@ -150,10 +133,10 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
             control={form.control}
             name="zip"
             render={({ field }) => (
-              <FormItem className="flex-1 min-w-20">
+              <FormItem className="flex-1 min-w-20 sm:mr-1 ">
                 <FormLabel>Zip Code</FormLabel>
                 <FormControl>
-                  <Input placeholder="90210" {...field} className="bg-white" />
+                  <Input {...field} className="bg-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -163,15 +146,26 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
             control={form.control}
             name="role"
             render={({ field }) => (
-              <FormItem className="min-w-60 flex-1">
+              <FormItem className="min-w-60 flex-1 sm:ml-1 ">
                 <FormLabel>Role</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Real Estate Agent"
-                    {...field}
-                    className="bg-white"
-                  />
-                </FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem className="hover:cursor-pointer" value="Agent">
+                      Agent
+                    </SelectItem>
+                    <SelectItem className="hover:cursor-pointer" value="Client">
+                      Client
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -183,12 +177,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
               <FormItem className="min-w-60 flex-1">
                 <FormLabel>Phone Number</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    placeholder="5613811127"
-                    {...field}
-                    className="bg-white"
-                  />
+                  <Input type="tel" {...field} className="bg-white" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -200,7 +189,7 @@ const CreateNewProfileForm = ({ currentUser, isLoading, onSave }: Props) => {
             type="submit"
             className="object-center bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
           >
-            Save
+            Create Profile
           </Button>
         </div>
       </form>

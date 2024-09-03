@@ -19,7 +19,7 @@ const CreateNewProfile = () => {
           navigate("/")
         ) : (
           <div className="flex flex-col flex-1 overflow-y-auto min-h-screen max-w-screen">
-            <div className="flex h-full flex-1 flex-col items-center justify-center -mt-36 overflow-y-auto">
+            <div className="flex h-full flex-1 flex-col items-center justify-center mb-36">
               <div className="flex flex-col justify-center items-center ">
                 <BlurFade delay={0.25} yOffset={-6} duration={0.6} inView>
                   <h2 className="text-6xl font-medium tracking-tighter text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text pointer-events-none select-none">

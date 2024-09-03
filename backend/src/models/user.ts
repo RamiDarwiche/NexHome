@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
+  clients: {
+    type: Array,
+    default: null,
+  },
 });
 
 // realtor requires current clients array, past clients array, license # (verification maybe)?

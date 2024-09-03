@@ -20,7 +20,7 @@ import { useGetMyUser } from "@/api/MyUserApi";
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Agent Dashboard",
-    href: "/agent-dashboard",
+    href: "/agent/dashboard",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
