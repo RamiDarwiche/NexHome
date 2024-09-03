@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import NavMenu from "./MainNav";
 
+// TODO: change header links based on logged in user role
+// maybe move dashboard link to profile dropdown
+// current nav links can be reserved for public resources
+
 const Header = () => {
   return (
     <div className="py-4">

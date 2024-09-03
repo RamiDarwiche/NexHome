@@ -89,11 +89,11 @@ type CreateUserProfileRequest = {
   role: string;
   phone: string;
 };
-export const useUpdateMyUser = () => {
+export const useCompleteMyUserProfile = () => {
   const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
 
-  const updateMyUserRequest = async (formData: CreateUserProfileRequest) => {
+  const completeMyUserProfile = async (formData: CreateUserProfileRequest) => {
     const accessToken = await getAccessTokenSilently();
     const profileFlagCreatedObj = { profileCreated: true };
     const formDataWithProfileFlag = Object.assign(
@@ -118,12 +118,12 @@ export const useUpdateMyUser = () => {
   };
 
   const {
-    mutateAsync: updateUser,
+    mutateAsync: completeUserProfile,
     isLoading,
     error,
     isSuccess,
     reset,
-  } = useMutation(updateMyUserRequest);
+  } = useMutation(completeMyUserProfile);
 
   if (isSuccess) {
     navigate("/");
@@ -135,7 +135,68 @@ export const useUpdateMyUser = () => {
   }
 
   return {
-    updateUser,
+    completeUserProfile,
+    isLoading,
+  };
+};
+
+type updateUserRequest = {
+  fName: string;
+  lName: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  role: string;
+  phone: string;
+};
+export const useUpdateMyUserProfile = () => {
+  const { currentUser } = useGetMyUser();
+  const navigate = useNavigate();
+  const { getAccessTokenSilently } = useAuth0();
+
+  const updateMyUserProfile = async (formData: updateUserRequest) => {
+    const accessToken = await getAccessTokenSilently();
+    // Fill requirements for put, as role is not editable and profileCreated is guaranteed to be true here
+    const profileFlagCreatedObjAndRole = {
+      profileCreated: true,
+      role: currentUser?.role,
+    };
+    const formDataWithProfileFlag = Object.assign(
+      formData,
+      profileFlagCreatedObjAndRole
+    );
+
+    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formDataWithProfileFlag),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update user");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutateAsync: updateUserProfile,
+    isLoading,
+    error,
+    reset,
+  } = useMutation(updateMyUserProfile);
+
+  if (error) {
+    // toast.error(error.toString());
+    reset();
+  }
+
+  return {
+    updateUserProfile,
     isLoading,
   };
 };

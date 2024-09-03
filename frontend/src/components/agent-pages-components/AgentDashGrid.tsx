@@ -47,7 +47,7 @@ const features = [
 
 export function AgentDashGrid() {
   return (
-    <BentoGrid>
+    <BentoGrid className="pb-6">
       {features.map((feature, idx) => (
         <BentoCard key={idx} {...feature} />
       ))}

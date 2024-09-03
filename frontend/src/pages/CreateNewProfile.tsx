@@ -1,4 +1,4 @@
-import { useGetMyUser, useUpdateMyUser } from "@/api/MyUserApi";
+import { useGetMyUser, useCompleteMyUserProfile } from "@/api/MyUserApi";
 import Footer from "@/components/Footer";
 import CreateNewProfileForm from "@/components/forms/user-profile/CreateNewProfileForm";
 import BlurFade from "@/components/magicui/blur-fade";
@@ -7,7 +7,8 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 
 const CreateNewProfile = () => {
   const { currentUser } = useGetMyUser();
-  const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser();
+  const { completeUserProfile, isLoading: isUpdateLoading } =
+    useCompleteMyUserProfile();
   const navigate = useNavigate();
 
   return (
@@ -42,7 +43,7 @@ const CreateNewProfile = () => {
               >
                 <CreateNewProfileForm
                   currentUser={currentUser}
-                  onSave={updateUser}
+                  onSave={completeUserProfile}
                   isLoading={isUpdateLoading}
                 />
               </BlurFade>
