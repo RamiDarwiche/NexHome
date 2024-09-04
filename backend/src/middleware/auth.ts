@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { auth } from "express-oauth2-jwt-bearer";
 import jwt from "jsonwebtoken";
-import User from "../models/user";
+import Agent from "../models/userTypes";
 
 declare global {
   namespace Express {
@@ -35,14 +35,14 @@ export const jwtParse = async (
     const decoded = jwt.decode(token) as jwt.JwtPayload;
     const auth0Id = decoded.sub;
 
-    const user = await User.findOne({ auth0Id });
+    const agent = await Agent.findOne({ auth0Id });
 
-    if (!user) {
+    if (!agent) {
       return res.sendStatus(401);
     }
 
     req.auth0Id = auth0Id as string;
-    req.userId = user._id.toString();
+    req.userId = agent._id.toString();
     next();
   } catch (error) {
     return res.sendStatus(401);

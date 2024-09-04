@@ -17,12 +17,12 @@ import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import MobileNavUserLinks from "./MobileNavUserLinks";
-import { useGetMyUser } from "@/api/MyUserApi";
+import MobileNavAgentLinks from "./MobileNavAgentLinks";
+import { useGetMyAgent } from "@/api/MyAgentApi";
 
 const MobileNav = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
-  const { currentUser } = useGetMyUser();
+  const { currentAgent } = useGetMyAgent();
 
   return (
     <Sheet>
@@ -105,14 +105,14 @@ const MobileNav = () => {
           <div className="container px-0 flex-1 justify-end">
             {isAuthenticated ? (
               <Link to="/user-profile">
-                <MobileNavUserLinks currentUser={currentUser} />
+                <MobileNavAgentLinks currentAgent={currentAgent} />
               </Link>
             ) : (
               <Button
                 className="flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
                 onClick={async () => await loginWithRedirect()}
               >
-                Log In
+                Agent Log In
               </Button>
             )}
           </div>

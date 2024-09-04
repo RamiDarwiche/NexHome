@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
-import MyUserRoute from "./routes/MyUserRoute";
+import MyAgentRoute from "./routes/MyAgentRoute";
 
 mongoose
   .connect(process.env.MONGO_DB_URI as string)
@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/my/user", MyUserRoute);
+app.use("/api/my/agent", MyAgentRoute);
 
 app.listen(3000, () => {
   console.log("Server started on localhost:3000");

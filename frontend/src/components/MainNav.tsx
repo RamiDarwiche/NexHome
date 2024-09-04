@@ -14,8 +14,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "./ui/button";
-import MainNavUserLinks from "./MainNavUserLinks";
-import { useGetMyUser } from "@/api/MyUserApi";
+import MainNavAgentLinks from "./MainNavAgentLinks";
+import { useGetMyAgent } from "@/api/MyAgentApi";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -56,9 +56,9 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function NavMenu() {
-  // TODO: fix getMyUser Bug in displaying current user's properties
+  // TODO: fix getMyAgent Bug in displaying current user's properties
   const { loginWithRedirect, isAuthenticated } = useAuth0();
-  const { currentUser } = useGetMyUser();
+  const { currentAgent } = useGetMyAgent();
 
   return (
     <div className="flex justify-between items-center mt-1">
@@ -129,7 +129,7 @@ export default function NavMenu() {
       </div>
       <div className="container px-0 flex-1 justify-end">
         {isAuthenticated ? (
-          <MainNavUserLinks currentUser={currentUser} />
+          <MainNavAgentLinks currentAgent={currentAgent} />
         ) : (
           <Button
             variant="ghost"
@@ -137,7 +137,7 @@ export default function NavMenu() {
             className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
             onClick={async () => await loginWithRedirect()}
           >
-            Log In
+            Agent Log In
           </Button>
         )}
       </div>

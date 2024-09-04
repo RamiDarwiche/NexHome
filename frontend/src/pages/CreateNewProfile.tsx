@@ -1,22 +1,22 @@
-import { useGetMyUser, useCompleteMyUserProfile } from "@/api/MyUserApi";
+import { useGetMyAgent, useCompleteMyAgentProfile } from "@/api/MyAgentApi";
 import Footer from "@/components/Footer";
-import CreateNewProfileForm from "@/components/forms/user-profile/CreateNewProfileForm";
+import CreateNewProfileForm from "@/components/forms/user-profile/CreateNewAgentProfileForm";
 import BlurFade from "@/components/magicui/blur-fade";
 import { useNavigate } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 const CreateNewProfile = () => {
-  const { currentUser } = useGetMyUser();
-  const { completeUserProfile, isLoading: isUpdateLoading } =
-    useCompleteMyUserProfile();
+  const { currentAgent } = useGetMyAgent();
+  const { completeAgentProfile, isLoading: isUpdateLoading } =
+    useCompleteMyAgentProfile();
   const navigate = useNavigate();
 
   return (
     <>
       {/* first ternary operator displays loading element while fetching current user */}
-      {currentUser ? (
+      {currentAgent ? (
         // if current user already has a created profile redirect to homepage
-        currentUser?.profileCreated ? (
+        currentAgent?.profileCreated ? (
           navigate("/")
         ) : (
           <div className="flex flex-col flex-1 overflow-y-auto min-h-screen max-w-screen">
@@ -42,8 +42,8 @@ const CreateNewProfile = () => {
                 className="flex w-full flex-shrink justify-center"
               >
                 <CreateNewProfileForm
-                  currentUser={currentUser}
-                  onSave={completeUserProfile}
+                  currentAgent={currentAgent}
+                  onSave={completeAgentProfile}
                   isLoading={isUpdateLoading}
                 />
               </BlurFade>

@@ -9,27 +9,27 @@ import { Link } from "react-router-dom";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { User } from "@/types";
+import { Agent } from "@/types";
 import { Skeleton } from "./ui/skeleton";
 
 type Props = {
   avatar: string;
-  currentUser: User;
+  currentAgent: Agent;
 };
 
-const MainNavUserLinks = ({ avatar, currentUser }: Props) => {
+const MainNavAgentLinks = ({ avatar, currentAgent }: Props) => {
   const { logout } = useAuth0();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex flex-1 items-center font-medium hover:text-primary-sdlight2 gap-2">
-        {currentUser ? (
+        {currentAgent ? (
           <>
             <Avatar>
               <AvatarImage src={avatar} />
               <AvatarFallback className="font-medium">RD</AvatarFallback>
             </Avatar>
-            <div className="flex text-nowrap">{`${currentUser?.fName} ${currentUser?.lName}`}</div>
+            <div className="flex text-nowrap">{`${currentAgent?.fName} ${currentAgent?.lName}`}</div>
           </>
         ) : (
           <div className="flex items-center space-x-4">
@@ -42,8 +42,8 @@ const MainNavUserLinks = ({ avatar, currentUser }: Props) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="my-1 justify-center">
-          <Link to="/user-profile" className="font-medium ">
-            User Profile
+          <Link to="/agent-profile" className="font-medium ">
+            Agent Profile
           </Link>
         </DropdownMenuItem>
         <Separator />
@@ -62,4 +62,4 @@ const MainNavUserLinks = ({ avatar, currentUser }: Props) => {
   );
 };
 
-export default MainNavUserLinks;
+export default MainNavAgentLinks;

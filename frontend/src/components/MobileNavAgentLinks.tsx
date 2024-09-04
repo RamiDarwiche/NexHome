@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useAuth0 } from "@auth0/auth0-react";
-import { User } from "@/types";
+import { Agent } from "@/types";
 import { SheetClose } from "./ui/sheet";
 
 type Props = {
-  currentUser: User;
+  currentAgent: Agent;
 };
 
-const MobileNavUserLinks = ({ currentUser }: Props) => {
+const MobileNavAgentLinks = ({ currentAgent }: Props) => {
   const { logout } = useAuth0();
 
   return (
     <div className="flex flex-row justify-between mt-1 text-center">
       <SheetClose asChild>
         <Link
-          to="/user-profile"
+          to="/agent-profile"
           className="flex flex-1 py-4 items-center font-medium focus:text-primary-sdlight1 hover:text-primary-sdlight1"
         >
           {/* change from generic to first, last or email */}
-          {`${currentUser.fName} ${currentUser.lName}`}
+          {`${currentAgent.fName} ${currentAgent.lName}`}
         </Link>
       </SheetClose>
       <Button
@@ -34,4 +34,4 @@ const MobileNavUserLinks = ({ currentUser }: Props) => {
   );
 };
 
-export default MobileNavUserLinks;
+export default MobileNavAgentLinks;

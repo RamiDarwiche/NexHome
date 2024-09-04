@@ -1,4 +1,4 @@
-import { useGetMyUser } from "@/api/MyUserApi";
+import { useGetMyAgent } from "@/api/MyAgentApi";
 import { MainAnimatedList } from "@/components/AnimatedList";
 import BlurFade from "@/components/magicui/blur-fade";
 import Particles from "@/components/magicui/particles";
@@ -11,11 +11,11 @@ const HomePage = () => {
   // once role specific pages are set up, profile completion redirects should be abstracted to those components. this will ensure
   // that users with an auth token that havent finished their profile can still access public resources without being autoredirected
   const navigate = useNavigate();
-  const { currentUser, isLoading: isGetLoading } = useGetMyUser();
+  const { currentAgent, isLoading: isGetLoading } = useGetMyAgent();
   const { isAuthenticated, isLoading: isAuthLoading } = useAuth0();
 
   // if account signed up without creating profile redirect
-  if (currentUser?.profileCreated === false && isAuthenticated) {
+  if (currentAgent?.profileCreated === false && isAuthenticated) {
     navigate("/create-profile");
   }
 
@@ -70,10 +70,10 @@ const HomePage = () => {
             {/* fix bug with particle background on resize */}
           </div>
           <div className="flex flex-col md:flex-row max-w-3/5 z-1">
-            <BlurFade delay={0.25 * 5} yOffset={-3} duration={0.6}>
+            <BlurFade delay={0.25 * 6.5} yOffset={-3} duration={0.5}>
               <MainAnimatedList />
             </BlurFade>
-            <BlurFade delay={0.25 * 5} yOffset={-3} duration={0.6}>
+            <BlurFade delay={0.25 * 6.5} yOffset={-3} duration={0.5}>
               <div className="container max-w-[350px] md:pr-0">
                 <h1 className="pt-6 pb-2 text-3xl md:text-3xl md:pt-0 font-medium tracking-tighter text-primary-sdlight1 pointer-events-none select-none">
                   Remove the stress from your transactions

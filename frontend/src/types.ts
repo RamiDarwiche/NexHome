@@ -1,4 +1,20 @@
-export type User = {
+export type Client = {
+  auth0Id: string;
+  email: string;
+  profileCreated: boolean;
+  agentName: string;
+  agentId: string;
+  fName: string;
+  lName: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  role: string;
+  phone: string;
+};
+
+export type Agent = {
   _id: string;
   email: string;
   fName: string;
@@ -10,4 +26,5 @@ export type User = {
   role: string;
   phone: string;
   profileCreated: boolean;
+  clients: Client[];
 };

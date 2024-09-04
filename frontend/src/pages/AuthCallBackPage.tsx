@@ -1,24 +1,24 @@
-import { useCreateMyUser } from "@/api/MyUserApi";
+import { useCreateMyAgent } from "@/api/MyAgentApi";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthCallbackPage = () => {
   const { user } = useAuth0();
-  const { createUser } = useCreateMyUser();
+  const { createAgent } = useCreateMyAgent();
   const navigate = useNavigate();
 
-  const hasCreatedUser = useRef(false);
+  const hasCreatedAgent = useRef(false);
 
   useEffect(() => {
-    console.log(hasCreatedUser.current);
-    if (user?.sub && user?.email && !hasCreatedUser.current) {
-      createUser({ auth0Id: user.sub, email: user.email });
-      hasCreatedUser.current = true;
+    console.log(hasCreatedAgent.current);
+    if (user?.sub && user?.email && !hasCreatedAgent.current) {
+      createAgent({ auth0Id: user.sub, email: user.email });
+      hasCreatedAgent.current = true;
     }
     // profile creation redirect is handled on homepage
     navigate("/");
-  }, [createUser, navigate, user]);
+  }, [createAgent, navigate, user]);
 
   return <>Loading...</>;
 };

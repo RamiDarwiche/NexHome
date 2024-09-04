@@ -1,17 +1,17 @@
-import { User } from "@/types";
+import { Agent } from "@/types";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const useGetMyUser = () => {
+export const useGetMyAgent = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const getMyUserRequest = async (): Promise<User> => {
+  const getMyAgentRequest = async (): Promise<Agent> => {
     const accessToken = await getAccessTokenSilently();
 
-    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+    const response = await fetch(`${API_BASE_URL}/api/my/agent`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -20,66 +20,66 @@ export const useGetMyUser = () => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch user");
+      throw new Error("Failed to fetch agent");
     }
 
     return response.json();
   };
 
   const {
-    data: currentUser,
+    data: currentAgent,
     isLoading,
     error,
-  } = useQuery("fetchCurrentUser", getMyUserRequest);
+  } = useQuery("fetchCurrentAgent", getMyAgentRequest);
 
   if (error) {
     // toast.error(error.toString());
   }
 
-  return { currentUser, isLoading };
+  return { currentAgent, isLoading };
 };
 
-type CreateUserRequest = {
+type CreateAgentRequest = {
   auth0Id: string;
   email: string;
 };
 
-export const useCreateMyUser = () => {
+export const useCreateMyAgent = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const createMyUserRequest = async (user: CreateUserRequest) => {
+  const createMyAgentRequest = async (agent: CreateAgentRequest) => {
     const accessToken = await getAccessTokenSilently();
 
-    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+    const response = await fetch(`${API_BASE_URL}/api/my/agent`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(agent),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to create user");
+      throw new Error("Failed to create agent");
     }
   };
 
   const {
-    mutateAsync: createUser,
+    mutateAsync: createAgent,
     isLoading,
     isError,
     isSuccess,
-  } = useMutation(createMyUserRequest);
+  } = useMutation(createMyAgentRequest);
 
   return {
-    createUser,
+    createAgent,
     isLoading,
     isError,
     isSuccess,
   };
 };
 
-type CreateUserProfileRequest = {
+type CreateAgentProfileRequest = {
   fName: string;
   lName: string;
   address: string;
@@ -89,11 +89,13 @@ type CreateUserProfileRequest = {
   role: string;
   phone: string;
 };
-export const useCompleteMyUserProfile = () => {
+export const useCompleteMyAgentProfile = () => {
   const navigate = useNavigate();
   const { getAccessTokenSilently } = useAuth0();
 
-  const completeMyUserProfile = async (formData: CreateUserProfileRequest) => {
+  const completeMyAgentProfile = async (
+    formData: CreateAgentProfileRequest
+  ) => {
     const accessToken = await getAccessTokenSilently();
     const profileFlagCreatedObj = { profileCreated: true };
     const formDataWithProfileFlag = Object.assign(
@@ -101,7 +103,7 @@ export const useCompleteMyUserProfile = () => {
       profileFlagCreatedObj
     );
 
-    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+    const response = await fetch(`${API_BASE_URL}/api/my/agent`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -111,19 +113,19 @@ export const useCompleteMyUserProfile = () => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to update user");
+      throw new Error("Failed to update agent");
     }
 
     return response.json();
   };
 
   const {
-    mutateAsync: completeUserProfile,
+    mutateAsync: completeAgentProfile,
     isLoading,
     error,
     isSuccess,
     reset,
-  } = useMutation(completeMyUserProfile);
+  } = useMutation(completeMyAgentProfile);
 
   if (isSuccess) {
     navigate("/");
@@ -135,12 +137,12 @@ export const useCompleteMyUserProfile = () => {
   }
 
   return {
-    completeUserProfile,
+    completeAgentProfile,
     isLoading,
   };
 };
 
-type updateUserRequest = {
+type updateAgentRequest = {
   fName: string;
   lName: string;
   address: string;
@@ -150,24 +152,23 @@ type updateUserRequest = {
   role: string;
   phone: string;
 };
-export const useUpdateMyUserProfile = () => {
-  const { currentUser } = useGetMyUser();
-  const navigate = useNavigate();
+export const useUpdateMyAgentProfile = () => {
+  const { currentAgent } = useGetMyAgent();
   const { getAccessTokenSilently } = useAuth0();
 
-  const updateMyUserProfile = async (formData: updateUserRequest) => {
+  const updateMyAgentProfile = async (formData: updateAgentRequest) => {
     const accessToken = await getAccessTokenSilently();
     // Fill requirements for put, as role is not editable and profileCreated is guaranteed to be true here
     const profileFlagCreatedObjAndRole = {
       profileCreated: true,
-      role: currentUser?.role,
+      role: currentAgent?.role,
     };
     const formDataWithProfileFlag = Object.assign(
       formData,
       profileFlagCreatedObjAndRole
     );
 
-    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+    const response = await fetch(`${API_BASE_URL}/api/my/agent`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -177,18 +178,24 @@ export const useUpdateMyUserProfile = () => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to update user");
+      throw new Error("Failed to update agent");
     }
 
     return response.json();
   };
 
   const {
-    mutateAsync: updateUserProfile,
+    mutateAsync: updateAgentProfile,
     isLoading,
     error,
+    isSuccess,
     reset,
-  } = useMutation(updateMyUserProfile);
+  } = useMutation(updateMyAgentProfile);
+
+  // Refreshing page for now to instantly update form heading and header profile name
+  if (isSuccess) {
+    window.location.reload();
+  }
 
   if (error) {
     // toast.error(error.toString());
@@ -196,7 +203,8 @@ export const useUpdateMyUserProfile = () => {
   }
 
   return {
-    updateUserProfile,
+    updateAgentProfile,
     isLoading,
+    isSuccess,
   };
 };

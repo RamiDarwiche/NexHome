@@ -1,15 +1,15 @@
-import { useGetMyUser } from "@/api/MyUserApi";
+import { useGetMyAgent } from "@/api/MyAgentApi";
 import AgentDash from "@/components/agent-pages-components/AgentDash";
 import { useAuth0 } from "@auth0/auth0-react";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import NotAgentRedirect from "./NotAgentRedirect";
 
 const AgentLanding = () => {
-  const { currentUser, isLoading: isGetLoading } = useGetMyUser();
+  const { currentAgent, isLoading: isGetLoading } = useGetMyAgent();
   const { isAuthenticated, isLoading: isAuthLoading } = useAuth0();
 
   // need to find new way to represent loading state
-  const isLoggedInAgent = isAuthenticated && currentUser?.role == "Agent";
+  const isLoggedInAgent = isAuthenticated && currentAgent?.role == "Agent";
 
   return (
     <>
@@ -28,7 +28,7 @@ const AgentLanding = () => {
       ) : (
         <div className="h-inherit">
           {isLoggedInAgent ? (
-            <AgentDash currentUser={currentUser} />
+            <AgentDash currentUser={currentAgent} />
           ) : (
             <h1>
               <NotAgentRedirect />
