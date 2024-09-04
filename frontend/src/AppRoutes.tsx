@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Layout from "./layouts/layout";
 import AuthCallbackPage from "./pages/AuthCallBackPage";
-import CreateNewProfile from "./pages/CreateNewProfile";
+import CreateNewAgentProfile from "./pages/CreateNewAgentProfile";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import AgentProfile from "./pages/agent-pages/AgentProfile";
@@ -90,7 +90,7 @@ const AppRoutes = () => {
         }
       />
       <Route path="/auth-callback" element={<AuthCallbackPage />} />
-      <Route path="/create-profile" element={<CreateNewProfile />} />
+      <Route path="/create-profile" element={<CreateNewAgentProfile />} />
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );

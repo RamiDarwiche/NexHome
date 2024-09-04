@@ -67,7 +67,7 @@ const EditAgentProfileForm = ({ currentAgent, isSuccess, onSave }: Props) => {
       <form
         // On form submit invoke MyAgentApi to save changes to DB
         onSubmit={form.handleSubmit(onSave)}
-        className="m-6 mb-2 p-5 w-3/4 md:w-full space-y-4 rounded-lg md:p-10 shadow shadow-primary-uilight3 border border-primary-uilight3"
+        className="m-auto mb-2 p-5 w-3/4 md:w-full space-y-4 rounded-lg md:p-10 shadow shadow-primary-uilight3 border border-primary-uilight3"
       >
         <div>
           <h1 className="text-2xl text-primary-bdlight2 font-semibold">

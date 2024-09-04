@@ -5,7 +5,7 @@ import BlurFade from "@/components/magicui/blur-fade";
 import { useNavigate } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
-const CreateNewProfile = () => {
+const CreateNewAgentProfile = () => {
   const { currentAgent } = useGetMyAgent();
   const { completeAgentProfile, isLoading: isUpdateLoading } =
     useCompleteMyAgentProfile();
@@ -67,4 +67,4 @@ const CreateNewProfile = () => {
   );
 };
 
-export default CreateNewProfile;
+export default CreateNewAgentProfile;

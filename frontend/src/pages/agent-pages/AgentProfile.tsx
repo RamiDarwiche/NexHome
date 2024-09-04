@@ -12,7 +12,7 @@ const AgentProfile = () => {
   } = useUpdateMyAgentProfile();
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-shrink flex-col justify-center">
       {currentAgent ? (
         <>
           <EditAgentProfileForm
@@ -22,7 +22,7 @@ const AgentProfile = () => {
             isSuccess={isSuccess}
           />
 
-          <span className="ml-7 text-xs">
+          <span className="ml-1 text-xs">
             Account type: {currentAgent.role}
           </span>
         </>
