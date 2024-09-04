@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotAgentRedirect = () => {
   return (
+    // close enough
     <div className="absolute top-[40%] left-[22%]">
       <div className="flex flex-1 flex-col gap-y-6 items-center overflow-y-auto">
         <h1 className="text-2xl text-center">
