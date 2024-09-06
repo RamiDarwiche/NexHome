@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { House } from "lucide-react";
+import { House, Moon, Sun } from "lucide-react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { cn } from "@/lib/utils";
@@ -16,6 +16,8 @@ import {
 import { Button } from "./ui/button";
 import MainNavAgentLinks from "./MainNavAgentLinks";
 import { useGetMyAgent } from "@/api/MyAgentApi";
+import { useTheme } from "./theme-provider";
+import { useEffect, useState } from "react";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -57,8 +59,16 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function NavMenu() {
   // TODO: fix getMyAgent Bug in displaying current user's properties
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
   const { currentAgent } = useGetMyAgent();
+  const { setTheme } = useTheme();
+  const [darkTheme, setDarkTheme] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("vite-ui-theme") == "dark") {
+      setDarkTheme(true);
+    }
+  }, []);
 
   return (
     <div className="flex justify-between items-center mt-1">
@@ -127,9 +137,12 @@ export default function NavMenu() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <div className="container px-0 flex-1 justify-end">
+      <div className="container px-0 flex flex-1 justify-end">
         {isAuthenticated ? (
           <MainNavAgentLinks currentAgent={currentAgent} />
+        ) : // hide agent login button while checking for auth switching pages
+        isLoading ? (
+          <div className="hidden"></div>
         ) : (
           <Button
             variant="ghost"
@@ -138,6 +151,33 @@ export default function NavMenu() {
             onClick={async () => await loginWithRedirect()}
           >
             Agent Log In
+          </Button>
+        )}
+
+        {/* ill move this eventually but its here to save my eyes in development */}
+        {darkTheme ? (
+          <Button
+            className="ml-3"
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              setTheme("light");
+              setDarkTheme(false);
+            }}
+          >
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          </Button>
+        ) : (
+          <Button
+            className="ml-3"
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              setTheme("dark");
+              setDarkTheme(true);
+            }}
+          >
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           </Button>
         )}
       </div>

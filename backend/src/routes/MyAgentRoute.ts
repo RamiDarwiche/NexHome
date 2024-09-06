@@ -15,9 +15,6 @@ router.put(
   MyUserController.updateCurrentAgent
 );
 
-// fix this
-router.patch("/", MyUserController.addNewClient);
-
 router.get("/", jwtCheck, jwtParse, MyUserController.getCurrentAgent);
 
 export default router;

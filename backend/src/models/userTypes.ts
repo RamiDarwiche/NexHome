@@ -88,7 +88,52 @@ const agentSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
-  clients: [clientSchema],
+  clients: {
+    auth0Id: {
+      type: String,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    profileCreated: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
+    agentName: {
+      type: String,
+      required: true,
+    },
+    agentId: {
+      type: String,
+      required: true,
+    },
+    fName: {
+      type: String,
+    },
+    lName: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    zip: {
+      type: String,
+    },
+    role: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+  },
 });
 
 // realtor requires current clients array, past clients array, license # (verification maybe)?

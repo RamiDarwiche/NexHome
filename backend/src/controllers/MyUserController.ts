@@ -77,27 +77,7 @@ const updateCurrentAgent = async (req: Request, res: Response) => {
   }
 };
 
-// redo this jawn
-const addNewClient = async (req: Request, res: Response) => {
-  try {
-    const agent = await Agent.findById(req.userId);
-
-    if (!agent) {
-      return res.status(404).json({ message: "Agent not found" });
-    }
-
-    agent.clients.create(req.body);
-
-    await agent.save();
-    res.send(agent.clients);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Error updating user" });
-  }
-};
-
 export default {
-  addNewClient,
   createCurrentAgent,
   updateCurrentAgent,
   getCurrentAgent,
