@@ -22,4 +22,4 @@ Tech Used:
 - Express.js
 - Auth0
 - Stripe (to be implemented)
-- Cloudinary (to be implemented
+- Cloudinary (to be implemented)
