@@ -8,18 +8,18 @@ System design changes to be made:
 - Public header tabs should be purely informative and not include any user functionality
 - Account creation from public page should be reserved for agents
   - Client accounts should be created from a mix of agent inputs and information inputted from agent-sent invite link
- - Once logged in, change either nav or dropdown to add functional elements (dashboard/inbox/etc)
- - Maybe create subnav for front page?
+ - Separate landing pages will be created displayed dependent on user roles
 
-Tech stack:
+   
+Tech Used:
 
 - React
-- Vite?
-- NextJS?
-- ShadCN?
-- TailwindCSS
-- MongoDB w/ Mongoose
+- Vite
+- ShadCN and MagicUI components
+- Tailwind CSS
+- MongoDB
 - Node.js
-- Expressjs
+- Express.js
 - Auth0
-- Stripe
+- Stripe (to be implemented)
+- Cloudinary (to be implemented
