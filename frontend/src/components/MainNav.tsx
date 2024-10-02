@@ -96,6 +96,7 @@ export default function NavMenu() {
                       </a>
                     </NavigationMenuLink>
                   </li>
+                  {/* REMOVE HREFS AND WRAP W LINKS AT SOME POINT */}
                   <ListItem href="/docs" title="Introduction">
                     Re-usable components built using Radix UI and Tailwind CSS.
                   </ListItem>
