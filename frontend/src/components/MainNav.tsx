@@ -147,7 +147,7 @@ export default function NavMenu() {
           <Button
             variant="ghost"
             // className="hover:text-primary-sdlight2 hover:bg-accent" choose one later
-            className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
+            className="bg-white dark:bg-primary-sdlight2 dark:text-white dark:hover:bg-primary-aclight1 dark:border-none dark:shadow-none shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
             onClick={async () => await loginWithRedirect()}
           >
             Agent Log In

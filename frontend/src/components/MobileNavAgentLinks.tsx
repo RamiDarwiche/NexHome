@@ -23,7 +23,7 @@ const MobileNavAgentLinks = ({ currentAgent }: Props) => {
         </Link>
       </SheetClose>
       <Button
-        className="my-2 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
+        className="my-2 dark:bg-primary-sdlight2 dark:text-white dark:hover:bg-primary-aclight1 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
         onClick={() => {
           logout({ logoutParams: { returnTo: "http://localhost:5173" } });
         }}

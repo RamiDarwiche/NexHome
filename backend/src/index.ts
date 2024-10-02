@@ -12,6 +12,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/health", async (req: Request, res: Response) => {
+  res.send({ message: "OK!" });
+});
+
 app.use("/api/my/agent", MyAgentRoute);
 
 app.listen(3000, () => {

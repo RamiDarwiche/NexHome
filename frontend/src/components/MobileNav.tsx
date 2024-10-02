@@ -127,7 +127,7 @@ const MobileNav = () => {
               </Link>
             ) : (
               <Button
-                className="flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
+                className="flex-1 bg-white dark:bg-primary-sdlight2 dark:text-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
                 onClick={async () => await loginWithRedirect()}
               >
                 Agent Log In

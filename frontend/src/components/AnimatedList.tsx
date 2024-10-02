@@ -52,7 +52,7 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
         // light styles
         "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
         // dark styles
-        "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]"
+        "transform-gpu dark:bg-transparent dark:backdrop-blur-md  dark:[box-shadow:5px_0_4px_4px_rgba(0,0,0,.03),0_1px_12px_rgba(255,255,255,0.1),30px_24px_30px_rgba(0,0,0,.05)] dark:shadow-lg"
       )}
     >
       <div className="flex flex-row items-center gap-3">
@@ -83,7 +83,7 @@ export function MainAnimatedList({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative flex h-[400px] w-[350px] flex-col p-6 overflow-hidden rounded-lg border bg-background md:shadow-xl",
+        "relative flex h-[400px] w-[350px] flex-col p-6 overflow-hidden rounded-lg border bg-background md:shadow-xl dark:[box-shadow:5px_0_4px_4px_rgba(0,0,0,.03),0_1px_40px_rgba(255,255,255,0.06),30px_24px_30px_rgba(0,0,0,.05)] dark:shadow-lg",
         className
       )}
     >

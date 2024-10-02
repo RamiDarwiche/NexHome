@@ -12,7 +12,7 @@ const Header = () => {
       <div className="container mx-auto flex flex-start min-h-9">
         <Link
           to="/"
-          className="text-3xl font-bold tracking-tight text-transparent mr-5 bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 bg-clip-text"
+          className="text-3xl font-bold tracking-tight text-transparent mr-5 bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 dark:from-primary-sdlight1 dark:to-primary-sdlight2 bg-clip-text"
         >
           NexHome
         </Link>

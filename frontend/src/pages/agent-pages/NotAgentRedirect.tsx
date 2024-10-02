@@ -10,7 +10,7 @@ const NotAgentRedirect = () => {
           You must be registered as a real estate agent to view this resource
         </h1>
         <Link to="/">
-          <Button className="bg-white shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none">
+          <Button className="bg-white dark:bg-primary-sdlight2 dark:text-white dark:hover:bg-primary-aclight1 dark:border-none dark:shadow-none shadow-primary-uilight3 text-primary-sdlight1 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none">
             Return to Home
           </Button>
         </Link>
