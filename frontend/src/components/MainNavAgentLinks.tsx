@@ -48,7 +48,9 @@ const MainNavAgentLinks = ({ currentAgent }: Props) => {
         <DropdownMenuItem className="my-1 focus:bg-white">
           <Button
             onClick={() =>
-              logout({ logoutParams: { returnTo: "http://localhost:5173" } })
+              logout({
+                logoutParams: { returnTo: "https://nexhome-1.onrender.com/" },
+              })
             }
             className="flex flex-1 bg-white shadow-primary-uilight3 text-primary-sdlight2 hover:text-white hover:bg-primary-bdlight3 shadow border border-primary-uilight3 select-none"
           >

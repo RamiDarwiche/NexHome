@@ -15,7 +15,7 @@ const MobileNavAgentLinks = ({ currentAgent }: Props) => {
     <div className="flex flex-row justify-between mt-1 text-center">
       <SheetClose asChild>
         <Link
-          to="/agent-profile"
+          to="/agent/profile"
           className="flex flex-1 py-4 items-center font-medium focus:text-primary-sdlight1 hover:text-primary-sdlight1"
         >
           {/* change from generic to first, last or email */}
