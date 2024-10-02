@@ -50,7 +50,7 @@ const AppRoutes = () => {
       />
       {/* Agent routing */}
       <Route
-        path="/agent-dashboard"
+        path="/agent/dashboard"
         element={
           <Layout>
             <AgentLanding />
@@ -58,7 +58,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/agent-inbox"
+        path="/agent/inbox"
         element={
           <Layout>
             <AgentInbox />
@@ -66,7 +66,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/agent-clients"
+        path="/agent/clients"
         element={
           <Layout>
             <AgentClients />
@@ -74,7 +74,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/agent-calendar"
+        path="/agent/calendar"
         element={
           <Layout>
             <AgentCalendar />
@@ -82,7 +82,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/agent-add-client"
+        path="/agent/add-client"
         element={
           <Layout>
             <AgentAddClient />
