@@ -13,11 +13,10 @@ import { Agent } from "@/types";
 import { Skeleton } from "./ui/skeleton";
 
 type Props = {
-  avatar: string;
   currentAgent: Agent;
 };
 
-const MainNavAgentLinks = ({ avatar, currentAgent }: Props) => {
+const MainNavAgentLinks = ({ currentAgent }: Props) => {
   const { logout } = useAuth0();
 
   return (
@@ -26,8 +25,7 @@ const MainNavAgentLinks = ({ avatar, currentAgent }: Props) => {
         {currentAgent ? (
           <>
             <Avatar>
-              <AvatarImage src={avatar} />
-              <AvatarFallback className="font-medium">RD</AvatarFallback>
+              <AvatarFallback className="font-medium">TP</AvatarFallback>
             </Avatar>
             <div className="flex text-nowrap">{`${currentAgent?.fName} ${currentAgent?.lName}`}</div>
           </>

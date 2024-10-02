@@ -1,9 +1,9 @@
-import { User } from "@/types";
+import { Agent } from "@/types";
 import { AgentDashGrid } from "./AgentDashGrid";
 import BlurFade from "../magicui/blur-fade";
 
 type Props = {
-  currentUser: User;
+  currentUser: Agent;
 };
 
 const AgentDash = ({ currentUser }: Props) => {
