@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Agent } from "@/types";
 import { Skeleton } from "./ui/skeleton";
 

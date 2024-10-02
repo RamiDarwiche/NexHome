@@ -17,6 +17,7 @@ export type Client = {
 export type Agent = {
   _id: string;
   fName: string;
+  disabled?: boolean;
   lName: string;
   address: string;
   zip: string;

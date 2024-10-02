@@ -4,7 +4,6 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { IconProps } from "@radix-ui/react-icons/dist/types";
 
 const BentoGrid = ({
   children,

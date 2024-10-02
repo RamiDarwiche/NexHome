@@ -9,12 +9,11 @@ import {
 import { FormControl } from "../../ui/form";
 
 type Props = {
-  disabled: boolean;
+  disabled?: boolean;
   field: ControllerRenderProps<
     {
       state?: string;
       email?: string;
-      disabled?: boolean;
       fName?: string;
       lName?: string;
       address?: string;
@@ -27,7 +26,7 @@ type Props = {
   >;
 };
 
-const SelectState = ({ field }: Props) => {
+const SelectState = ({ field, disabled }: Props) => {
   const states = [
     "Alabama",
     "Alaska",
@@ -82,7 +81,11 @@ const SelectState = ({ field }: Props) => {
   ];
 
   return (
-    <Select onValueChange={field.onChange} defaultValue={field.value}>
+    <Select
+      onValueChange={field.onChange}
+      defaultValue={field.value}
+      disabled={disabled}
+    >
       <FormControl>
         <SelectTrigger>
           <SelectValue />

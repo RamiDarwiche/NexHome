@@ -80,14 +80,14 @@ export const useCreateMyAgent = () => {
 };
 
 type CreateAgentProfileRequest = {
-  fName: string;
-  lName: string;
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  role: string;
-  phone: string;
+  fName?: string;
+  lName?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
+  role?: string;
+  phone?: string;
 };
 export const useCompleteMyAgentProfile = () => {
   const navigate = useNavigate();
