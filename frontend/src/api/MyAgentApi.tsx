@@ -80,6 +80,7 @@ export const useCreateMyAgent = () => {
 };
 
 type CreateAgentProfileRequest = {
+  // surely i will never regret making this all optional
   fName?: string;
   lName?: string;
   address?: string;
