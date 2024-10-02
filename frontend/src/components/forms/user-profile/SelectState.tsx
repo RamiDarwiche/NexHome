@@ -12,21 +12,22 @@ type Props = {
   disabled: boolean;
   field: ControllerRenderProps<
     {
-      state: string;
-      email: string;
-      fName: string;
-      lName: string;
-      address: string;
-      zip: string;
-      city: string;
-      role: "Agent" | "Client";
-      phone: string;
+      state?: string;
+      email?: string;
+      disabled?: boolean;
+      fName?: string;
+      lName?: string;
+      address?: string;
+      zip?: string;
+      city?: string;
+      role?: "Agent" | "Client";
+      phone?: string;
     },
     "state"
   >;
 };
 
-const SelectState = ({ field, disabled }: Props) => {
+const SelectState = ({ field }: Props) => {
   const states = [
     "Alabama",
     "Alaska",
@@ -81,11 +82,7 @@ const SelectState = ({ field, disabled }: Props) => {
   ];
 
   return (
-    <Select
-      onValueChange={field.onChange}
-      defaultValue={field.value}
-      disabled={disabled}
-    >
+    <Select onValueChange={field.onChange} defaultValue={field.value}>
       <FormControl>
         <SelectTrigger>
           <SelectValue />
