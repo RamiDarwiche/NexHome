@@ -8,6 +8,10 @@ type Props = {
   currentAgent: Agent;
 };
 
+/*
+todo: fix edge case where clicking on mobile nav icon while awaiting auth makes the page blank
+*/
+
 const MobileNavAgentLinks = ({ currentAgent }: Props) => {
   const { logout } = useAuth0();
 
