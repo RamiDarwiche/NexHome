@@ -1,10 +1,10 @@
 import { useGetMyAgent } from "@/api/MyAgentApi";
 import { MainAnimatedList } from "@/components/AnimatedList";
 import BlurFade from "@/components/magicui/blur-fade";
-import Particles from "@/components/magicui/particles";
+// import Particles from "@/components/magicui/particles";
 import { Button } from "@/components/ui/button";
 import { useAuth0 } from "@auth0/auth0-react";
-import { ChevronDown } from "lucide-react";
+// import { ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
