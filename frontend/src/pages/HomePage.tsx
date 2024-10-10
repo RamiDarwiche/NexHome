@@ -29,6 +29,7 @@ const HomePage = () => {
     <div className="h-inherit">
       {/* display loader if awaiting fetches */}
       {isAuthLoading ? (
+        // loader while checking for async currentUser booleans
         <div className="absolute top-[45%] left-1/2">
           <ScaleLoader
             height={40}
@@ -40,18 +41,17 @@ const HomePage = () => {
           />
         </div>
       ) : (
-        // loader while checking for async currentUser booleans
         <>
           <section>
-            <section className="flex flex-col min-h-[87vh] items-center">
-              <Particles
+            <section className="flex flex-col min-h-[88vh] items-center">
+              {/* <Particles
                 className="absolute inset-0 -z-1 min-h-[87vh] pointer-events-none"
                 color={"#52B4DF"}
                 // maybe configure for performance
                 quantity={800}
                 size={0.6}
                 staticity={45}
-              />
+              /> */}
               <div className="title container flex flex-col justify-center items-center">
                 <BlurFade delay={0.25} yOffset={-6} duration={0.6} inView>
                   <h2 className="text-6xl font-medium tracking-tighter text-transparent bg-gradient-to-b from-primary-sdlight1 to-primary-uilight3 dark:from-primary-sdlight1 dark:to-primary-sdlight2 bg-clip-text pointer-events-none select-none">
@@ -118,7 +118,7 @@ const HomePage = () => {
               duration={0.5}
               className="flex justify-center"
             >
-              <ChevronDown className="" />
+              {/* <ChevronDown className="my-4" /> */}
             </BlurFade>
           </section>
           <section className="flex flex-col min-h-[87vh] items-center">
