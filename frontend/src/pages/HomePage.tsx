@@ -112,14 +112,14 @@ const HomePage = () => {
                 </BlurFade>
               </div>
             </section>
-            <BlurFade
+            {/* <BlurFade
               delay={0.25 * 6.5}
               yOffset={-3}
               duration={0.5}
               className="flex justify-center"
-            >
-              {/* <ChevronDown className="my-4" /> */}
-            </BlurFade>
+            > */}
+            {/* <ChevronDown className="my-4" /> */}
+            {/* </BlurFade> */}
           </section>
           <section className="flex flex-col min-h-[87vh] items-center">
             <section id="problemStatement" className="flex flex-col py-10">
